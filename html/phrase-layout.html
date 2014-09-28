@@ -1,0 +1,8 @@
+<div class="phrases-item" ng-repeat="phraseInfo in main.phrases">
+	<p title="{{phraseInfo.phrase}}">{{phraseInfo.phrase}}</p>
+
+	<div class="btn-group btn-group-xs">
+		<button type="button" class="btn btn-danger" ng-click="main.deletePhrase(phraseInfo.guid)">X</button>
+		<button type="button" class="btn btn-default" ng-click="main.copyPhrase(phraseInfo.phrase)">Copiar</button>
+	</div>
+</div>

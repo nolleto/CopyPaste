@@ -1,0 +1,70 @@
+body { width: 400px; }
+
+.add {
+	margin: 5px 0px;
+}
+
+.add textarea {
+	margin: 0px 5px;
+	width: 335px;
+	max-width: 335px;
+	max-height: 225px;
+}
+
+.add button {
+	margin-bottom: 15px;
+}
+
+.phrases-item {
+	width: 100%;
+	margin: 8px 5px; 
+	padding-right: 8px;
+}
+
+.phrases-item .btn-group {
+	float: right;
+}
+
+.phrases-item p {
+	float: left;
+	width: 320px; 
+	white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+}
+
+.phrase-itens {
+
+}
+
+
+.message {
+	background: #ECECEC;
+	-webkit-border-radius: 5px;	
+	border-radius: 5px;
+	margin-left: 77px;
+	height: 16px;
+	overflow: hidden;
+	-webkit-transition: all 300ms ease-out;
+	transition: all 300ms ease-out;
+}
+.message.ng-hide-add,
+.message.ng-hide-remove {
+	display: block !important;
+	height: 0px;
+
+}
+
+.message.ng-hide-remove.ng-hide-remove-active {
+	height: 16px;
+	width: 221px;
+	
+	background: red
+}
+.message.ng-hide-add{
+	height: 16px;
+	width: 221px;	
+}
+.message.ng-hide-add.ng-hide-add-active {
+	height: 0;
+}

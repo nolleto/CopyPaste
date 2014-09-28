@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="CopyPaste" ng-csp>
+<head>
+	<meta charset="utf-8">
+	<title>CopyPaste</title>
+	<link rel="stylesheet" type="text/css" href="..\css\angular-csp.css">
+	<link rel="stylesheet" type="text/css" href="..\css\bootstrap.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="..\css\default.css">
+
+	<script src="..\js\libs\angular.min.js"></script>
+	<script src="..\js\libs\angular-animate.min.js"></script>
+
+	<script src="..\js\main.js"></script>
+	<script src="..\js\mainController.js"></script>
+	<script src="..\js\dbHelper.js"></script>
+
+</head>
+	<body ng-controller="MainController as main">
+		<div class="add">
+			<textarea placeholder="Frase..." ng-model="main.currentPhrase" ng-keyup="main.onKeyup($event)"></textarea>
+			<button type="button" ng-disabled="!main.currentPhrase" class="btn btn-primary btn-xs" ng-click="main.savePhrase()">Salvar</button>
+		</div>
+
+		<!-- <span class="message" ng-show="main.copied">Copiado para área de transferência</span> -->
+
+		<div class="phrase-itens">
+			<phrase-layout></phrase-layout>	
+		</div>
+		
+	</body>
+</html>
