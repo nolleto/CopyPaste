@@ -5,12 +5,7 @@ document.addEventListener("mousedown", function(event){
     //right click    console.log(event.button)
     if(event.button == 2) { 
         e = event.target;
-        port.postMessage({ 
-            updateCopySave: {
-                bool: (e.selectionStart < e.selectionEnd),
-                value: getSelection()
-            }
-         });
+        updateContextMenu();
     }
 }, true);
 
@@ -36,12 +31,51 @@ function getText(original, value, replace) {
     return value;
 }
 
-function getSelection() {
-    var value;
-    if (e.nodeName === "DIV") {        
-        value = e.innerHTML;
-    } else {        
+function getSuperSelection() {
+    var value = getHTMLOfSelection();
+    if (!value && e.value) {    
         value = e.value;
+        value = value.substr(e.selectionStart, e.selectionEnd);
+        return value;
+    } else {
+        return formatHTMLSelection(value);
+    }    
+}
+
+function updateContextMenu() {
+    var selection = getSuperSelection();
+    port.postMessage({ 
+        updateCopySave: {
+            bool: !!selection,
+            value: selection
+        }
+     });
+}
+
+function getHTMLOfSelection() {
+    var range;
+    if (document.selection && document.selection.createRange) {
+        range = document.selection.createRange();
+        return range.htmlText;
     }
-    return value.substr(e.selectionStart, e.selectionEnd);
+    else if (window.getSelection) {
+        var selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            range = selection.getRangeAt(0);
+            var clonedSelection = range.cloneContents();
+            var div = document.createElement('div');
+            div.appendChild(clonedSelection);
+            return div.innerHTML;
+        } else {
+            return '';
+        }
+    } else {
+        return '';
+    }
+}
+
+//Remove tags do HTML como: <div>, <p>, <b>...
+function formatHTMLSelection(html) {    
+    var rgx = new RegExp('(<)/?[a-z]+[0-9]?[a-z="; ]*(>)', 'g');
+    return html.replace(rgx, '');
 }

@@ -23,7 +23,12 @@ chrome.extension.onConnect.addListener(function(port) {
 });
 
 chrome.contextMenus.onClicked.addListener(onClickHandler);
-chrome.runtime.onInstalled.addListener(function() {
+
+chrome.runtime.onInstalled.addListener(function() {	
+	installAllContextMenu();
+});
+
+chrome.runtime.onStartup.addListener(function() {	
 	installAllContextMenu();
 });
 
@@ -89,8 +94,8 @@ function installAllContextMenu() {
 	contextMenus = {};
 
 	chrome.contextMenus.removeAll(function() {
-		chrome.contextMenus.create({"title": "CopyPaste", "contexts":[context], "id": parentId});	
-		chrome.contextMenus.create({"title": "Salvar", "contexts":[context], "id": "copySave" ,"enabled": false, "parentId": parentId});
+		chrome.contextMenus.create({"title": "CopyPaste", "contexts":["all"], "id": parentId});	
+		chrome.contextMenus.create({"title": "Salvar", "contexts":["all"], "id": "copySave" ,"enabled": false, "parentId": parentId});
 
 		if (phrases.length) {					
 			installOptions();

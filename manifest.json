@@ -1,7 +1,7 @@
 {
   "name": "CopyPaste",
   "description": "Guarde frases que você geralmente usa todos os dias e copie ou cole elas facilmente.",
-  "version": "1.0",
+  "version": "1.0.1",
   "permissions": [
     "background",
   	"contextMenus",
